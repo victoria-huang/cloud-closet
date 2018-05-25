@@ -1,0 +1,14 @@
+<div class= "container">
+  <% if flash[:success] %>
+    <p class="alert alert-success">
+      <%= flash[:success] %>
+    </p>
+  <% end %>
+  <% if flash[:errors] %>
+    <p class="alert alert-danger">
+      <% flash[:errors].each do |error| %>
+        <%= error %><br>
+      <% end %>
+    </p>
+  <% end %>
+</div>

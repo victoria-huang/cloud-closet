@@ -1,21 +1,31 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  AppRegistry,
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Button
+} from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+import CameraScreen from './components/CameraScreen'
+import HomeScreen from './components/HomeScreen'
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Cloud Closet</Text>
-      </View>
-    );
+      <RootStack />
+    )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const RootStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Camera: CameraScreen,
   },
-});
+  {
+    initialRouteName: 'Home',
+  }
+);
