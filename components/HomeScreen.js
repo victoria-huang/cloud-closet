@@ -9,19 +9,23 @@ import {
   Button
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import CameraScreen from './CameraScreen'
 
 export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Cloud Closet</Text>
-          <Button
-            onPress={() => this.props.navigation.navigate('Camera')}
-            title="Learn More"
-            color="#841584"
-            accessibilityLabel="Get Started"
-          />
+        <Text style={styles.header}>Cloud Closet</Text>
+         <Button
+           onPress={() => {this.props.navigation.navigate('Login')}}
+           title="Login"
+           accessibilityLabel="Login"
+         />
+
+         <Button
+           onPress={() => {this.props.navigation.navigate('Register')}}
+           title="Register"
+           accessibilityLabel="Register"
+         />
       </View>
     );
   }
@@ -31,7 +35,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  header: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginTop: 0,
   },
 });
