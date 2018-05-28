@@ -6,7 +6,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Button
+  Button,
+  Image
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import t from 'tcomb-form-native';
@@ -19,6 +20,7 @@ const User = t.struct({
 
 export default class LoginScreen extends React.Component {
   state = {
+    userId: '',
     name: '',
     email: '',
     errors: false
@@ -33,9 +35,10 @@ export default class LoginScreen extends React.Component {
       .then(users => users.find(user => user.email.toLowerCase() === value.email.toLowerCase()))
       .then(user => {
         if (user) {
-          console.log(user)
+          // console.log(user)
           this.setState({
             errors: false,
+            userId: user.id,
             name: user.name,
             email: user.email
           }, () => {
@@ -45,7 +48,6 @@ export default class LoginScreen extends React.Component {
           this.setState({
             errors: true
           })
-          console.log("no user found with this email")
         }
       })
     }
@@ -54,8 +56,7 @@ export default class LoginScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Cloud Closet</Text>
-
+        <Text style={styles.header}>Welcome Back!</Text>
         { this.state.errors && <Text style={styles.error}>No user found with this email!</Text> }
 
         <View style={styles.form}>
@@ -79,9 +80,9 @@ const styles = StyleSheet.create({
   },
 
   header: {
+    fontFamily: 'amatic-sc-bold',
     textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 40,
     marginBottom: 10,
   },
 

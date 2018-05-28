@@ -20,6 +20,7 @@ const User = t.struct({
 
 export default class RegisterScreen extends React.Component {
   state = {
+    userId: '',
     name: '',
     email: ''
   }
@@ -39,12 +40,15 @@ export default class RegisterScreen extends React.Component {
       		email: value.email
       	})
       })
-
-      this.setState({
-        name: value.name,
-        email: value.email
-      }, () => {
-        this.props.navigation.navigate('Closet', this.state)
+      .then(res => res.json())
+      .then(user => {
+        return this.setState({
+          userId: user.id,
+          name: user.name,
+          email: user.email
+        }, () => {
+          this.props.navigation.navigate('Closet', this.state)
+        })
       })
     }
   }
@@ -52,7 +56,7 @@ export default class RegisterScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Cloud Closet</Text>
+        <Text style={styles.header}>Create An Account</Text>
         <View style={styles.form}>
            <Form type={User} ref={c => this._form = c} />
            <Button
@@ -74,9 +78,9 @@ const styles = StyleSheet.create({
   },
 
   header: {
+    fontFamily: 'amatic-sc-bold',
     textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 40,
     marginBottom: 10,
   },
 

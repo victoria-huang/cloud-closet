@@ -3,6 +3,7 @@ import {
   AppRegistry,
   Dimensions,
   StyleSheet,
+  Image,
   Text,
   TouchableOpacity,
   View,
@@ -14,18 +15,20 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Cloud Closet</Text>
-         <Button
-           onPress={() => {this.props.navigation.navigate('Login')}}
-           title="Login"
-           accessibilityLabel="Login"
-         />
+        <Image style={styles.image} source={require('../images/logo.jpg')} />
+        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Login')}}>
+          <Image
+            style={styles.button}
+            source={require('../images/button_login.png')}
+          />
+        </TouchableOpacity>
 
-         <Button
-           onPress={() => {this.props.navigation.navigate('Register')}}
-           title="Register"
-           accessibilityLabel="Register"
-         />
+        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Register')}}>
+          <Image
+            style={styles.button}
+            source={require('../images/button_register.png')}
+          />
+        </TouchableOpacity>
       </View>
     );
   }
@@ -36,12 +39,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'center',
+    alignItems:'center'
   },
 
-  header: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 20,
-    marginTop: 0,
+  button: {
+    marginBottom: 10
+  },
+
+  image: {
+    height: 200,
+    width: 200
   },
 });

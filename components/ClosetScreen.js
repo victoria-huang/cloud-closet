@@ -11,14 +11,31 @@ import {
 import { createStackNavigator } from 'react-navigation';
 
 export default class ClosetScreen extends React.Component {
-  render() {
+  state = {
+    name: '',
+    email: '',
+    clothes: []
+  }
+
+  componentDidMount() {
     // console.log(this.props.navigation.state.params)
+    this.setState({
+      name: this.props.navigation.state.params.name,
+      email: this.props.navigation.state.params.email
+    })
+  }
+
+  render() {
     return (
       <View style={styles.container}>
-        <Text>Closet Screen</Text>
+        <Text>Hi, {this.state.name.capitalize()}!</Text>
       </View>
     );
   }
+}
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
 const styles = StyleSheet.create({
