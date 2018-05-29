@@ -1,7 +1,8 @@
 import React from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
-import { createStackNavigator, NavigationActions } from 'react-navigation';
+import { createStackNavigator, NavigationActions, createBottomTabNavigator } from 'react-navigation';
 import { Font } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
 import CameraScreen from './components/CameraScreen'
 import HomeScreen from './components/HomeScreen'
 import ClosetScreen from './components/ClosetScreen'
@@ -23,9 +24,8 @@ export default class App extends React.Component {
   }
 }
 
-const RootStack = createStackNavigator(
+const TabNavigator = createBottomTabNavigator(
   {
-    Home: HomeScreen,
     Camera: CameraScreen,
     Closet: {
       screen: ClosetScreen,
@@ -34,8 +34,38 @@ const RootStack = createStackNavigator(
         headerLeft: null
       }
     },
+    Logout: HomeScreen
+  },
+  {
+    initialRouteName: 'Closet',
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'Closet') {
+          iconName = `ios-cloud${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Camera') {
+          iconName = `ios-camera${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Logout') {
+          iconName = `ios-log-out${focused ? '' : '-outline'}`
+        }
+
+        return <Ionicons name={iconName} size={30} color={tintColor} />;
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: 'dodgerblue',
+      inactiveTintColor: 'gray',
+    },
+  }
+)
+
+const RootStack = createStackNavigator(
+  {
+    Home: HomeScreen,
     Login: LoginScreen,
     Register: RegisterScreen,
+    Closet: TabNavigator
   },
   {
     initialRouteName: 'Home',
