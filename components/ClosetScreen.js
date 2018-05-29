@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView, Button } from 'react-native';
+import ClothingImage from './ClothingImage'
 
 export default class ClosetScreen extends React.Component {
   state = {
@@ -17,6 +18,47 @@ export default class ClosetScreen extends React.Component {
       userId: params.userId,
       name: params.name,
       email: params.email
+    }, () => {
+      fetch('http://localhost:3000/api/v1/clothings')
+      .then(res => res.json())
+      .then(clothes => {
+        return clothes.filter(c => c.user_id === this.state.userId)
+      })
+      .then(user_clothes => {
+        return this.setState({
+          clothes: user_clothes
+        })
+      })
+    })
+  }
+
+  renderTops = () => {
+    return this.state.clothes.filter(c => c.clothing_type === 'tops').map(c => {
+      return <ClothingImage key={c.id} imageUrl={c.image_url} />
+    })
+  }
+
+  renderBottoms = () => {
+    return this.state.clothes.filter(c => c.clothing_type === 'bottoms').map(c => {
+      return <ClothingImage key={c.id} imageUrl={c.image_url} />
+    })
+  }
+
+  renderDresses = () => {
+    return this.state.clothes.filter(c => c.clothing_type === 'dresses').map(c => {
+      return <ClothingImage key={c.id} imageUrl={c.image_url} />
+    })
+  }
+
+  renderShoes = () => {
+    return this.state.clothes.filter(c => c.clothing_type === 'shoes').map(c => {
+      return <ClothingImage key={c.id} imageUrl={c.image_url} />
+    })
+  }
+
+  renderAccessories = () => {
+    return this.state.clothes.filter(c => c.clothing_type === 'accessories').map(c => {
+      return <ClothingImage key={c.id} imageUrl={c.image_url} />
     })
   }
 
@@ -33,11 +75,7 @@ export default class ClosetScreen extends React.Component {
             snapToInterval={200} // element width
             snapToAlignment={"center"}
         >
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
+          {this.renderTops()}
         </ScrollView>
 
         <Text style={styles.header}>Bottoms</Text>
@@ -47,11 +85,7 @@ export default class ClosetScreen extends React.Component {
             snapToInterval={200} // element width
             snapToAlignment={"center"}
         >
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
+          {this.renderBottoms()}
         </ScrollView>
 
         <Text style={styles.header}>Dresses</Text>
@@ -61,11 +95,7 @@ export default class ClosetScreen extends React.Component {
             snapToInterval={200} // element width
             snapToAlignment={"center"}
         >
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
+          {this.renderDresses()}
         </ScrollView>
 
         <Text style={styles.header}>Shoes</Text>
@@ -75,11 +105,7 @@ export default class ClosetScreen extends React.Component {
             snapToInterval={200} // element width
             snapToAlignment={"center"}
         >
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
+          {this.renderShoes()}
         </ScrollView>
 
         <Text style={styles.header}>Accessories</Text>
@@ -89,11 +115,7 @@ export default class ClosetScreen extends React.Component {
             snapToInterval={200} // element width
             snapToAlignment={"center"}
         >
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
-          <Image style={styles.image} source={require('../images/placeholder.png')} />
+          {this.renderAccessories()}
         </ScrollView>
       </ScrollView>
     );
