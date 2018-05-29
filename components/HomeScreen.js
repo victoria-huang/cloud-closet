@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-  AppRegistry,
-  Dimensions,
-  StyleSheet,
-  Image,
-  Text,
-  TouchableOpacity,
-  View,
-  Button
-} from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { Dimensions, StyleSheet, Image, Text, TouchableOpacity, View, Button } from 'react-native';
 
 export default class HomeScreen extends React.Component {
   render() {

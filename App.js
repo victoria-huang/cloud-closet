@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  AppRegistry,
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Button
-} from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
+import { createStackNavigator, NavigationActions } from 'react-navigation';
 import { Font } from 'expo';
 import CameraScreen from './components/CameraScreen'
 import HomeScreen from './components/HomeScreen'
@@ -35,7 +27,13 @@ const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
     Camera: CameraScreen,
-    Closet: ClosetScreen,
+    Closet: {
+      screen: ClosetScreen,
+      navigationOptions:  {
+        title: 'Closet',
+        headerLeft: null
+      }
+    },
     Login: LoginScreen,
     Register: RegisterScreen,
   },

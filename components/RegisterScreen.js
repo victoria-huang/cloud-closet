@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  AppRegistry,
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Button
-} from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
 import t from 'tcomb-form-native';
 
 const Form = t.form.Form;
