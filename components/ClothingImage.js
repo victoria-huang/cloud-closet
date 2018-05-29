@@ -17,7 +17,7 @@ export default class ClothingImage extends React.Component {
     return(
       <View style={{padding: 5, alignSelf: 'flex-start'}}>
         <TouchableOpacity onPress={this.handleClick}>
-          <Image style={styles.image} source={{uri: this.props.imageUrl}} />
+          <Image style={this.state.isClicked ? styles.imageSelected : styles.image} source={{uri: this.props.imageUrl}} />
         </TouchableOpacity>
       </View>
     )
@@ -29,4 +29,11 @@ const styles = StyleSheet.create({
     height: 200,
     width: 200,
   },
+  imageSelected: {
+    height: 200,
+    width: 200,
+    opacity: 0.5,
+    borderColor: "gray",
+    borderWidth: 0.5
+  }
 });
