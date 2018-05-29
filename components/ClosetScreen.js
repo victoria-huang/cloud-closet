@@ -34,21 +34,21 @@ export default class ClosetScreen extends React.Component {
   }
 
   handlePress = (id, isClicked) => {
-    if (isClicked === true) {
+    if (isClicked) {
       const clothing = this.state.clothes.find(c => c.id === id)
       this.setState({
           outfit: [...this.state.outfit, clothing]
       })
-    }else{
+    } else {
       const cIndex = this.state.outfit.findIndex(c => c.id === id)
       let outfitCopy = this.state.outfit.slice()
       outfitCopy.splice(cIndex, 1)
+
       this.setState({
         outfit: outfitCopy
       })
     }
   }
-
 
   renderTops = () => {
     return this.state.clothes.filter(c => c.clothing_type === 'tops').map(c => {
@@ -80,12 +80,64 @@ export default class ClosetScreen extends React.Component {
     })
   }
 
+  handleCreateOutfit = () => {
+    fetch('http://localhost:3000/api/v1/outfits', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: this.state.userId
+      })
+    })
+    .then(res => res.json())
+    .then(newOutfit => {
+      return this.state.outfit.forEach(c => {
+        fetch('http://localhost:3000/api/v1/clothing_outfits', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            clothing_id: c.id,
+            outfit_id: newOutfit.id
+          })
+        })
+      })
+    })
+
+    this.props.navigation.navigate('Outfit', this.state)
+  }
+
+  handleAllOutfits = () => {
+    this.props.navigation.navigate('Outfits', this.state)
+  }
+
   render() {
-    console.log(this.state.outfit);
+    // console.log(this.state.outfit);
     const greeting = `${this.state.name.capitalize()}'s closet:`
     return (
       <ScrollView style={styles.container}>
-        <Text style={styles.greeting}>{greeting}</Text>
+        <View style={styles.topContainer}>
+          <View style={styles.leftAlign}>
+            <TouchableOpacity onPress={this.handleAllOutfits}>
+              <Image style={styles.icon} source={require('../images/outfit-icon.png')} />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.centerAlign}>
+            <Text style={styles.greeting}>{greeting}</Text>
+          </View>
+
+          <View style={styles.rightAlign}>
+            <TouchableOpacity onPress={this.handleCreateOutfit}>
+              <Image style={styles.icon} source={require('../images/plus_icon.png')} />
+            </TouchableOpacity>
+          </View>
+        </View>
+
         <View style={{borderBottomColor: 'black', borderBottomWidth: 1}} />
         <Text style={styles.header}>Tops</Text>
         <ScrollView
@@ -157,6 +209,11 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
 
+  icon: {
+    width: 35,
+    height: 35,
+  },
+
   header: {
     fontFamily: 'amatic-sc-bold',
     textAlign: 'center',
@@ -167,5 +224,31 @@ const styles = StyleSheet.create({
   image: {
     height: 200,
     width: 200,
+    justifyContent: 'flex-end'
   },
+
+  topContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+
+  leftAlign: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+
+  centerAlign: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+
+  rightAlign: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  }
 });

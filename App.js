@@ -8,6 +8,8 @@ import HomeScreen from './components/HomeScreen'
 import ClosetScreen from './components/ClosetScreen'
 import LoginScreen from './components/LoginScreen'
 import RegisterScreen from './components/RegisterScreen'
+import OutfitScreen from './components/OutfitScreen'
+import AllOutfitsScreen from './components/AllOutfitsScreen'
 
 export default class App extends React.Component {
   componentDidMount() {
@@ -65,6 +67,20 @@ const RootStack = createStackNavigator(
     Home: HomeScreen,
     Login: LoginScreen,
     Register: RegisterScreen,
+    Outfit: {
+      screen: OutfitScreen,
+      navigationOptions:  {
+        title: 'Outfit Viewer',
+        headerLeft: null
+      }
+    },
+    Outfits: {
+      screen: AllOutfitsScreen,
+      navigationOptions:  {
+        title: 'All Outfits',
+        headerLeft: null
+      }
+    },
     Closet: TabNavigator
   },
   {
