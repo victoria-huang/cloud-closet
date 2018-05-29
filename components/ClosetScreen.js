@@ -7,7 +7,8 @@ export default class ClosetScreen extends React.Component {
     userId: '',
     name: '',
     email: '',
-    clothes: []
+    clothes: [],
+    outfit: []
   }
 
   componentDidMount() {
@@ -32,37 +33,55 @@ export default class ClosetScreen extends React.Component {
     })
   }
 
+  handlePress = (id, isClicked) => {
+    if (isClicked === true) {
+      const clothing = this.state.clothes.find(c => c.id === id)
+      this.setState({
+          outfit: [...this.state.outfit, clothing]
+      })
+    }else{
+      const cIndex = this.state.outfit.findIndex(c => c.id === id)
+      let outfitCopy = this.state.outfit.slice()
+      outfitCopy.splice(cIndex, 1)
+      this.setState({
+        outfit: outfitCopy
+      })
+    }
+  }
+
+
   renderTops = () => {
     return this.state.clothes.filter(c => c.clothing_type === 'tops').map(c => {
-      return <ClothingImage key={c.id} imageUrl={c.image_url} />
+      return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress} />
     })
   }
 
   renderBottoms = () => {
     return this.state.clothes.filter(c => c.clothing_type === 'bottoms').map(c => {
-      return <ClothingImage key={c.id} imageUrl={c.image_url} />
+      return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress} />
     })
   }
 
   renderDresses = () => {
     return this.state.clothes.filter(c => c.clothing_type === 'dresses').map(c => {
-      return <ClothingImage key={c.id} imageUrl={c.image_url} />
+      return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress}/>
     })
   }
 
   renderShoes = () => {
     return this.state.clothes.filter(c => c.clothing_type === 'shoes').map(c => {
-      return <ClothingImage key={c.id} imageUrl={c.image_url} />
+      return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress}/>
     })
   }
 
   renderAccessories = () => {
     return this.state.clothes.filter(c => c.clothing_type === 'accessories').map(c => {
-      return <ClothingImage key={c.id} imageUrl={c.image_url} />
+      return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress}/>
     })
   }
 
   render() {
+    console.log(this.state.outfit);
     const greeting = `${this.state.name.capitalize()}'s closet:`
     return (
       <ScrollView style={styles.container}>
@@ -95,7 +114,7 @@ export default class ClosetScreen extends React.Component {
             snapToInterval={200} // element width
             snapToAlignment={"center"}
         >
-          {this.renderDresses()}
+          {this.renderShoes()}
         </ScrollView>
 
         <Text style={styles.header}>Shoes</Text>
@@ -105,7 +124,7 @@ export default class ClosetScreen extends React.Component {
             snapToInterval={200} // element width
             snapToAlignment={"center"}
         >
-          {this.renderShoes()}
+          {this.renderDresses()}
         </ScrollView>
 
         <Text style={styles.header}>Accessories</Text>
