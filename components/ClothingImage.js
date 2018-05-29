@@ -3,11 +3,11 @@ import { Dimensions, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView
 
 export default class ClothingImage extends React.Component {
   render() {
-    const url = this.props.imageUrl
-    console.log(url)
     return(
-      <View>
-        <Image style={styles.image} source={{uri: this.props.imageUrl}} />
+      <View style={{padding: 5, alignSelf: 'flex-start'}}>
+        <TouchableOpacity onPress={()=>{console.log("clicked")}}>
+          <Image style={styles.image} source={{uri: this.props.imageUrl}} />
+        </TouchableOpacity>
       </View>
     )
   }
