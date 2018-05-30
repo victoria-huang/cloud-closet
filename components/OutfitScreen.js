@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   header: {
     fontFamily: 'amatic-sc-bold',
     textAlign: 'center',
-    fontSize: 28,
+    fontSize: 30,
     marginBottom: 5,
   },
 

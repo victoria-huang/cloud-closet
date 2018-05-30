@@ -138,7 +138,7 @@ export default class ClosetScreen extends React.Component {
     } else {
       Alert.alert(
         'Oops!',
-        'Outfits should have at least 1 item',
+        'You need at least 1 item to create an outfit.',
         [
           {text: 'OK', onPress: () => console.log('OK Pressed')},
         ],
@@ -149,7 +149,7 @@ export default class ClosetScreen extends React.Component {
 
   render() {
     // console.log(this.state.outfit);
-    const greeting = `${this.state.name.capitalize()}'s closet:`
+    const greeting = `${this.state.name.capitalize()}'s Closet`
     return (
       <ScrollView style={styles.container}>
         <View style={styles.topContainer}>
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
   greeting: {
     fontFamily: 'amatic-sc-bold',
     textAlign: 'center',
-    fontSize: 28,
+    fontSize: 30,
     marginBottom: 5
   },
 
