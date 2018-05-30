@@ -58,19 +58,6 @@ export default class CameraScreen extends React.Component {
                   {' '}Flip{' '}
                 </Text>
               </TouchableOpacity>
-
-              <TouchableOpacity
-                style={{
-                  flex: 0.1,
-                  alignSelf: 'flex-end',
-                  alignItems: 'center',
-                }}
-                onPress={this.snap}>
-                <Text
-                  style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
-                  {' '}Take Photo{' '}
-                </Text>
-              </TouchableOpacity>
             </View>
           </Camera>
         </View>

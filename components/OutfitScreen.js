@@ -16,14 +16,44 @@ export default class OutfitScreen extends React.Component {
     })
   }
 
-  renderOutfitView = () => {
-    return this.state.outfitClothes.map(c => {
+  renderTop = () => {
+    return this.state.outfitClothes.filter(c => c.clothing_type === 'tops').map(c => {
       return <Image key={c.id} style={styles.image} source={{uri: c.image_url}} />
     })
   }
 
+  renderBottom = () => {
+    return this.state.outfitClothes.filter(c => c.clothing_type === 'bottoms').map(c => {
+      return <Image key={c.id} style={styles.image} source={{uri: c.image_url}} />
+    })
+  }
+
+  renderDress = () => {
+    return this.state.outfitClothes.filter(c => c.clothing_type === 'dresses').map(c => {
+      return <Image key={c.id} style={styles.image} source={{uri: c.image_url}} />
+    })
+  }
+
+  renderShoes = () => {
+    return this.state.outfitClothes.filter(c => c.clothing_type === 'shoes').map(c => {
+      return <Image key={c.id} style={styles.image} source={{uri: c.image_url}} />
+    })
+  }
+
+  renderAccessories = () => {
+    return this.state.outfitClothes.filter(c => c.clothing_type === 'accessories').map(c => {
+      return <Image key={c.id} style={styles.image} source={{uri: c.image_url}} />
+    })
+  }
+
+  // renderOutfitView = () => {
+  //   return this.state.outfitClothes.map(c => {
+  //     return <Image key={c.id} style={styles.image} source={{uri: c.image_url}} />
+  //   })
+  // }
+
   handlePress = () => {
-    this.props.navigation.navigate('TabNav')
+    this.props.navigation.navigate('Outfits')
   }
 
   render() {
@@ -40,14 +70,18 @@ export default class OutfitScreen extends React.Component {
 
           <View style={styles.rightAlign}>
             <TouchableOpacity onPress={this.handlePress}>
-              <Image style={styles.icon} source={require('../images/closet-icon.png')} />
+              <Image style={styles.icon} source={require('../images/outfit-icon.png')} />
             </TouchableOpacity>
           </View>
         </View>
 
         <View style={{borderBottomColor: 'black', borderBottomWidth: 1}} />
         <View style={{alignItems: 'center'}}>
-          {this.renderOutfitView()}
+          {this.renderTop()}
+          {this.renderBottom()}
+          {this.renderDress()}
+          {this.renderShoes()}
+          {this.renderAccessories()}
         </View>
       </ScrollView>
     )

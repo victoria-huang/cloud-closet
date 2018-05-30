@@ -51,33 +51,58 @@ export default class ClosetScreen extends React.Component {
   }
 
   renderTops = () => {
-    return this.state.clothes.filter(c => c.clothing_type === 'tops').map(c => {
-      return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress} />
-    })
+    const tops = this.state.clothes.filter(c => c.clothing_type === 'tops');
+    if (tops.length > 0) {
+      return tops.map(c => {
+        return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress} />
+      })
+    } else {
+      return <Text>No tops in closet yet!</Text>
+    }
   }
 
   renderBottoms = () => {
-    return this.state.clothes.filter(c => c.clothing_type === 'bottoms').map(c => {
-      return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress} />
-    })
+    const bottoms = this.state.clothes.filter(c => c.clothing_type === 'bottoms');
+    if (bottoms.length > 0) {
+      return bottoms.map(c => {
+        return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress} />
+      })
+    } else {
+      return <Text>No bottoms in closet yet!</Text>
+    }
   }
 
   renderDresses = () => {
-    return this.state.clothes.filter(c => c.clothing_type === 'dresses').map(c => {
-      return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress}/>
-    })
+    const dresses = this.state.clothes.filter(c => c.clothing_type === 'dresses');
+    if (dresses.length > 0) {
+      return dresses.map(c => {
+        return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress} />
+      })
+    } else {
+      return <Text>No dresses in closet yet!</Text>
+    }
   }
 
   renderShoes = () => {
-    return this.state.clothes.filter(c => c.clothing_type === 'shoes').map(c => {
-      return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress}/>
-    })
+    const shoes = this.state.clothes.filter(c => c.clothing_type === 'shoes');
+    if (shoes.length > 0) {
+      return shoes.map(c => {
+        return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress} />
+      })
+    } else {
+      return <Text>No shoes in closet yet!</Text>
+    }
   }
 
   renderAccessories = () => {
-    return this.state.clothes.filter(c => c.clothing_type === 'accessories').map(c => {
-      return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress}/>
-    })
+    const accessories = this.state.clothes.filter(c => c.clothing_type === 'accessories');
+    if (accessories.length > 0) {
+      return accessories.map(c => {
+        return <ClothingImage key={c.id} cID={c.id} clothingType={c.clothing_type} imageUrl={c.image_url} handlePress={this.handlePress} />
+      })
+    } else {
+      return <Text>No accessories in closet yet!</Text>
+    }
   }
 
   handleCreateOutfit = () => {
@@ -133,55 +158,57 @@ export default class ClosetScreen extends React.Component {
         </View>
 
         <View style={{borderBottomColor: 'black', borderBottomWidth: 1}} />
-        <Text style={styles.header}>Tops</Text>
-        <ScrollView
-            horizontal={true}
-            decelerationRate={0}
-            snapToInterval={200} // element width
-            snapToAlignment={"center"}
-        >
-          {this.renderTops()}
-        </ScrollView>
+        <View style={{alignItems: 'center', justifyContent: 'center'}}>
+          <Text style={styles.header}>Tops</Text>
+          <ScrollView
+              horizontal={true}
+              decelerationRate={0}
+              snapToInterval={200} // element width
+              snapToAlignment={"center"}
+          >
+            {this.renderTops()}
+          </ScrollView>
 
-        <Text style={styles.header}>Bottoms</Text>
-        <ScrollView
-            horizontal={true}
-            decelerationRate={0}
-            snapToInterval={200} // element width
-            snapToAlignment={"center"}
-        >
-          {this.renderBottoms()}
-        </ScrollView>
+          <Text style={styles.header}>Bottoms</Text>
+          <ScrollView
+              horizontal={true}
+              decelerationRate={0}
+              snapToInterval={200} // element width
+              snapToAlignment={"center"}
+          >
+            {this.renderBottoms()}
+          </ScrollView>
 
-        <Text style={styles.header}>Shoes</Text>
-        <ScrollView
-            horizontal={true}
-            decelerationRate={0}
-            snapToInterval={200} // element width
-            snapToAlignment={"center"}
-        >
-          {this.renderShoes()}
-        </ScrollView>
+          <Text style={styles.header}>Shoes</Text>
+          <ScrollView
+              horizontal={true}
+              decelerationRate={0}
+              snapToInterval={200} // element width
+              snapToAlignment={"center"}
+          >
+            {this.renderShoes()}
+          </ScrollView>
 
-        <Text style={styles.header}>Dresses</Text>
-        <ScrollView
-            horizontal={true}
-            decelerationRate={0}
-            snapToInterval={200} // element width
-            snapToAlignment={"center"}
-        >
-          {this.renderDresses()}
-        </ScrollView>
+          <Text style={styles.header}>Dresses</Text>
+          <ScrollView
+              horizontal={true}
+              decelerationRate={0}
+              snapToInterval={200} // element width
+              snapToAlignment={"center"}
+          >
+            {this.renderDresses()}
+          </ScrollView>
 
-        <Text style={styles.header}>Accessories</Text>
-        <ScrollView
-            horizontal={true}
-            decelerationRate={0}
-            snapToInterval={200} // element width
-            snapToAlignment={"center"}
-        >
-          {this.renderAccessories()}
-        </ScrollView>
+          <Text style={styles.header}>Accessories</Text>
+          <ScrollView
+              horizontal={true}
+              decelerationRate={0}
+              snapToInterval={200} // element width
+              snapToAlignment={"center"}
+          >
+            {this.renderAccessories()}
+          </ScrollView>
+        </View>
       </ScrollView>
     );
   }
