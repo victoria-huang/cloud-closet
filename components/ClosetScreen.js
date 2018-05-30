@@ -111,10 +111,6 @@ export default class ClosetScreen extends React.Component {
     this.props.navigation.navigate('Outfit', this.state)
   }
 
-  handleAllOutfits = () => {
-    this.props.navigation.navigate('Outfits', this.state)
-  }
-
   render() {
     // console.log(this.state.outfit);
     const greeting = `${this.state.name.capitalize()}'s closet:`
@@ -122,9 +118,7 @@ export default class ClosetScreen extends React.Component {
       <ScrollView style={styles.container}>
         <View style={styles.topContainer}>
           <View style={styles.leftAlign}>
-            <TouchableOpacity onPress={this.handleAllOutfits}>
-              <Image style={styles.icon} source={require('../images/outfit-icon.png')} />
-            </TouchableOpacity>
+            <Image style={styles.icon} source={require('../images/logo-icon.jpg')} />
           </View>
 
           <View style={styles.centerAlign}>
@@ -159,7 +153,7 @@ export default class ClosetScreen extends React.Component {
           {this.renderBottoms()}
         </ScrollView>
 
-        <Text style={styles.header}>Dresses</Text>
+        <Text style={styles.header}>Shoes</Text>
         <ScrollView
             horizontal={true}
             decelerationRate={0}
@@ -169,7 +163,7 @@ export default class ClosetScreen extends React.Component {
           {this.renderShoes()}
         </ScrollView>
 
-        <Text style={styles.header}>Shoes</Text>
+        <Text style={styles.header}>Dresses</Text>
         <ScrollView
             horizontal={true}
             decelerationRate={0}
@@ -206,7 +200,8 @@ const styles = StyleSheet.create({
   greeting: {
     fontFamily: 'amatic-sc-bold',
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: 28,
+    marginBottom: 5
   },
 
   icon: {

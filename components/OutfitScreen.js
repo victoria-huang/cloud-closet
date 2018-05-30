@@ -22,17 +22,25 @@ export default class OutfitScreen extends React.Component {
     })
   }
 
+  handlePress = () => {
+    this.props.navigation.navigate('TabNav')
+  }
+
   render() {
     return(
       <ScrollView style={styles.container}>
         <View style={styles.topContainer}>
           <View style={styles.leftAlign}>
+            <Image style={styles.icon} source={require('../images/logo-icon.jpg')} />
+          </View>
+
+          <View style={styles.centerAlign}>
             <Text style={styles.header}>Outfit Viewer</Text>
           </View>
 
           <View style={styles.rightAlign}>
-            <TouchableOpacity>
-              <Image style={styles.icon} source={require('../images/outfit-icon.png')} />
+            <TouchableOpacity onPress={this.handlePress}>
+              <Image style={styles.icon} source={require('../images/closet-icon.png')} />
             </TouchableOpacity>
           </View>
         </View>
@@ -55,8 +63,8 @@ const styles = StyleSheet.create({
   header: {
     fontFamily: 'amatic-sc-bold',
     textAlign: 'center',
-    fontSize: 30,
-    marginBottom: 10,
+    fontSize: 28,
+    marginBottom: 5,
   },
 
   image: {
@@ -74,6 +82,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
+  },
+
+  centerAlign: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 
   rightAlign: {

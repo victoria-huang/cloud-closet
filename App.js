@@ -28,7 +28,12 @@ export default class App extends React.Component {
 
 const TabNavigator = createBottomTabNavigator(
   {
-    Camera: CameraScreen,
+    Camera: {
+      screen: CameraScreen,
+      navigationOptions: {
+        title: 'Add Clothing'
+      }
+    },
     Closet: {
       screen: ClosetScreen,
       navigationOptions:  {
@@ -36,7 +41,13 @@ const TabNavigator = createBottomTabNavigator(
         headerLeft: null
       }
     },
-    Logout: HomeScreen
+    Outfits: AllOutfitsScreen,
+    Logout: {
+      screen: HomeScreen,
+      navigationOptions: {
+        tabBarVisible: false
+      }
+    }
   },
   {
     initialRouteName: 'Closet',
@@ -50,6 +61,8 @@ const TabNavigator = createBottomTabNavigator(
           iconName = `ios-camera${focused ? '' : '-outline'}`;
         } else if (routeName === 'Logout') {
           iconName = `ios-log-out${focused ? '' : '-outline'}`
+        } else if (routeName === 'Outfits') {
+          iconName = `ios-shirt${focused ? '' : '-outline'}`
         }
 
         return <Ionicons name={iconName} size={30} color={tintColor} />;
@@ -64,7 +77,13 @@ const TabNavigator = createBottomTabNavigator(
 
 const RootStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Home: {
+      screen: HomeScreen,
+      navigationOptions:  {
+        title: 'Home',
+        headerLeft: null
+      }
+    },
     Login: LoginScreen,
     Register: RegisterScreen,
     Outfit: {
@@ -74,14 +93,12 @@ const RootStack = createStackNavigator(
         headerLeft: null
       }
     },
-    Outfits: {
-      screen: AllOutfitsScreen,
+    TabNav: {
+      screen: TabNavigator,
       navigationOptions:  {
-        title: 'All Outfits',
         headerLeft: null
       }
-    },
-    Closet: TabNavigator
+    }
   },
   {
     initialRouteName: 'Home',

@@ -38,7 +38,7 @@ export default class RegisterScreen extends React.Component {
           name: user.name,
           email: user.email
         }, () => {
-          this.props.navigation.navigate('Closet', this.state)
+          this.props.navigation.navigate('TabNav', this.state)
         })
       })
     }
