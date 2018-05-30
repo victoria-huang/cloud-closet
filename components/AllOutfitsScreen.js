@@ -9,29 +9,32 @@ export default class AllOutfitsScreen extends React.Component {
   }
 
   componentDidMount(){
-    const params = this.props.navigation.state.params;
+    this.props.navigation.addListener('didFocus', () => {
+      const params = this.props.navigation.state.params;
 
-    this.setState({
-      userId: params.userId
-    }, () => {
-      fetch('http://localhost:3000/api/v1/outfits')
-      .then(res => res.json())
-      .then(outfits => outfits.filter(o => o.user_id === this.state.userId))
-      .then(userOutfits => {
-        userOutfits.forEach(o => {
-          fetch(`http://localhost:3000/api/v1/outfits/${o.id}/clothes`)
-          .then(res => res.json())
-          .then(clothes => {
-            return this.setState({
-              outfits: [...this.state.outfits, {...o, clothes: clothes}]
+      this.setState({
+        userId: params.userId,
+        outfits: []
+      }, () => {
+        fetch('http://localhost:3000/api/v1/outfits')
+        .then(res => res.json())
+        .then(outfits => outfits.filter(o => o.user_id === this.state.userId))
+        .then(userOutfits => {
+          userOutfits.forEach(o => {
+            fetch(`http://localhost:3000/api/v1/outfits/${o.id}/clothes`)
+            .then(res => res.json())
+            .then(clothes => {
+              return this.setState({
+                outfits: [...this.state.outfits, {...o, clothes: clothes}]
+              })
             })
           })
+          // return this.setState({
+          //   outfits: userOutfits
+          // })
         })
-        // return this.setState({
-        //   outfits: userOutfits
-        // })
       })
-    })
+    });
   }
 
   renderOutfitViews = () => {
