@@ -36,7 +36,17 @@ export default class AllOutfitsScreen extends React.Component {
 
   renderOutfitViews = () => {
     return this.state.outfits.map((o, idx) => {
-      return <OutfitView key={o.id} navigation={this.props.navigation} userId={this.state.userId} {...o} idx={idx+1} />
+      return <OutfitView key={o.id} oID={o.id} handleDelete={this.handleDelete} navigation={this.props.navigation} userId={this.state.userId} {...o} idx={idx+1} />
+    })
+  }
+
+  handleDelete = (id) => {
+    const outfitIdx = this.state.outfits.findIndex(o => o.id === id);
+    const outfitsCopy = this.state.outfits.slice()
+    outfitsCopy.splice(outfitIdx, 1)
+
+    this.setState({
+      outfits: outfitsCopy
     })
   }
 
