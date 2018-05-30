@@ -134,6 +134,10 @@ export default class ClosetScreen extends React.Component {
         })
       })
 
+      // this.setState({
+      //   outfit: []
+      // })
+
       this.props.navigation.navigate('Outfit', this.state)
     } else {
       Alert.alert(
