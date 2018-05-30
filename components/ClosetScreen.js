@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView, Button } from 'react-native';
+import { Alert, Dimensions, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView, Button } from 'react-native';
 import ClothingImage from './ClothingImage'
 
 export default class ClosetScreen extends React.Component {
@@ -106,34 +106,45 @@ export default class ClosetScreen extends React.Component {
   }
 
   handleCreateOutfit = () => {
-    fetch('http://localhost:3000/api/v1/outfits', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        user_id: this.state.userId
+    if (this.state.outfit.length > 0) {
+      fetch('http://localhost:3000/api/v1/outfits', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id: this.state.userId
+        })
       })
-    })
-    .then(res => res.json())
-    .then(newOutfit => {
-      return this.state.outfit.forEach(c => {
-        fetch('http://localhost:3000/api/v1/clothing_outfits', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            clothing_id: c.id,
-            outfit_id: newOutfit.id
+      .then(res => res.json())
+      .then(newOutfit => {
+        return this.state.outfit.forEach(c => {
+          fetch('http://localhost:3000/api/v1/clothing_outfits', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              clothing_id: c.id,
+              outfit_id: newOutfit.id
+            })
           })
         })
       })
-    })
 
-    this.props.navigation.navigate('Outfit', this.state)
+      this.props.navigation.navigate('Outfit', this.state)
+    } else {
+      Alert.alert(
+        'Oops!',
+        'Outfits should have at least 1 item',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: true }
+      )
+    }
   }
 
   render() {
