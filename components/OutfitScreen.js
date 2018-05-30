@@ -52,24 +52,28 @@ export default class OutfitScreen extends React.Component {
   //   })
   // }
 
-  handlePress = () => {
+  handlePressOutfits = () => {
     this.props.navigation.navigate('Outfits')
+  }
+
+  handlePressCloset = () => {
+    this.props.navigation.navigate('Closet')
   }
 
   render() {
     return(
       <ScrollView style={styles.container}>
         <View style={styles.topContainer}>
-          <View style={styles.leftAlign}>
+          <TouchableOpacity style={styles.leftAlign} onPress={this.handlePressCloset}>
             <Image style={styles.icon} source={require('../images/logo-icon.jpg')} />
-          </View>
+          </TouchableOpacity>
 
           <View style={styles.centerAlign}>
             <Text style={styles.header}>Outfit Viewer</Text>
           </View>
 
           <View style={styles.rightAlign}>
-            <TouchableOpacity onPress={this.handlePress}>
+            <TouchableOpacity onPress={this.handlePressOutfits}>
               <Image style={styles.icon} source={require('../images/outfit-icon.png')} />
             </TouchableOpacity>
           </View>

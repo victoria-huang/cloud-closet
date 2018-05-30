@@ -57,7 +57,7 @@ export default class OutfitView extends React.Component {
           {this.renderClothingImages()}
         </ScrollView>
         <TouchableOpacity onPress={this.handlePressDelete}>
-          <Image style={{alignSelf: 'center', marginBottom: 10}} source={require('../images/button_delete.png')} />
+          <Image style={{alignSelf: 'center', marginBottom: 10, marginTop: 10}} source={require('../images/button_delete.png')} />
         </TouchableOpacity>
 
         <View style={{borderBottomColor: 'black', borderBottomWidth: 1}} />

@@ -53,21 +53,25 @@ export default class AllOutfitsScreen extends React.Component {
     })
   }
 
+  handlePress = () => {
+    this.props.navigation.navigate('Closet')
+  }
+
   render() {
     return(
       <ScrollView style={styles.container}>
         <View style={styles.topContainer}>
           <View style={styles.leftAlign}>
-            <Image style={styles.icon} source={require('../images/logo-icon.jpg')} />
+            <Image style={styles.icon} source={require('../images/white-circle.png')} />
           </View>
 
           <View style={styles.centerAlign}>
             <Text style={styles.header}>All Outfits</Text>
           </View>
 
-          <View style={styles.rightAlign}>
+          <TouchableOpacity style={styles.rightAlign} onPress={this.handlePress}>
             <Image style={styles.icon} source={require('../images/logo-icon.jpg')} />
-          </View>
+          </TouchableOpacity>
         </View>
         <View style={{borderBottomColor: 'black', borderBottomWidth: 1}} />
 

@@ -154,7 +154,7 @@ export default class ClosetScreen extends React.Component {
       <ScrollView style={styles.container}>
         <View style={styles.topContainer}>
           <View style={styles.leftAlign}>
-            <Image style={styles.icon} source={require('../images/logo-icon.jpg')} />
+            <Image style={styles.icon} source={require('../images/white-circle.png')} />
           </View>
 
           <View style={styles.centerAlign}>
