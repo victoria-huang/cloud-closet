@@ -46,12 +46,6 @@ export default class OutfitScreen extends React.Component {
     })
   }
 
-  // renderOutfitView = () => {
-  //   return this.state.outfitClothes.map(c => {
-  //     return <Image key={c.id} style={styles.image} source={{uri: c.image_url}} />
-  //   })
-  // }
-
   handlePressOutfits = () => {
     this.props.navigation.navigate('Outfits')
   }

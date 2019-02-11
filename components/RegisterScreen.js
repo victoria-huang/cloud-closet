@@ -18,7 +18,7 @@ export default class RegisterScreen extends React.Component {
 
   handleSubmit = () => {
     const value = this._form.getValue();
-    // console.log('value: ', value);
+
     if (value && value.name && value.email) {
       fetch('http://localhost:3000/api/v1/users', {
       	method: 'POST',

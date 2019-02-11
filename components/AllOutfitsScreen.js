@@ -29,9 +29,6 @@ export default class AllOutfitsScreen extends React.Component {
               })
             })
           })
-          // return this.setState({
-          //   outfits: userOutfits
-          // })
         })
       })
     });

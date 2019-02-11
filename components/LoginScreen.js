@@ -25,7 +25,6 @@ export default class LoginScreen extends React.Component {
       .then(users => users.find(user => user.email.toLowerCase() === value.email.toLowerCase()))
       .then(user => {
         if (user) {
-          // console.log(user)
           this.setState({
             errors: false,
             userId: user.id,

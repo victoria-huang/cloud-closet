@@ -12,7 +12,6 @@ export default class ClosetScreen extends React.Component {
   }
 
   componentDidMount() {
-    // console.log(this.props.navigation.state.params)
     const params = this.props.navigation.state.params;
 
     this.setState({
@@ -148,7 +147,6 @@ export default class ClosetScreen extends React.Component {
   }
 
   render() {
-    // console.log(this.state.outfit);
     const greeting = `${this.state.name.capitalize()}'s Closet`
     return (
       <ScrollView style={styles.container}>
